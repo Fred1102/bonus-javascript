@@ -9,8 +9,19 @@
 // NOTE: don't focus on the existing code structure for now.
 // You will have time to focus on it later.
 
-(function() {
-
     // your code here
 
-})();
+    window.addEventListener("load", ask); 
+
+    function ask() {
+        var age = prompt("What's your age?"); 
+        var gender = prompt("Give me your gender?"); 
+        var place = prompt("What's your adress?");
+        var result = confirm("You are " + age + "Your gender " + gender + "your adress is " + place + "." + " Is this correct?");
+
+        if (result == false) {
+            ask();
+        } else {
+            return; 
+        }
+}
