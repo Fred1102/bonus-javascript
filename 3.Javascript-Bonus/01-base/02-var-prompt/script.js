@@ -11,6 +11,10 @@
 
 (function() {
 
+    var name = prompt ('Your name', ''); 
+    if (name != null){
+        alert ("hello", + name + "."); 
+    }
     // your code here
 
 })();
