@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fix me!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="bg-dark pt-4">
+<div id="exercisesHolder" class="container">
+
+
+    <div class="row">
+        <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4 border">
+            <!-- Start writing content here -->
+        <p id="error1"></p><input id="text" type="text">
+        <input id="text2" type="text"> 
+        <select id="operatorChosen">
+            <option value="-">-</option>
+            <option value="+">+</option>
+            <option value="/">/</option>
+            <option value="*">*</option>
+        </select>
+        <button class="btn btn-primary">Calculate!</button>
+        <div id="textBox">Here is your result: <span id="field"></span>
+        
+        </div>
+    </div>
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+
+
+<script>
+    /** Write your javascript code here **/
+var btn = document.getElementsByClassName("btn")[0];
+btn.addEventListener("click", clickButton); 
+function clickButton() {
+    console.log("clickee!");
+    btn.classList.replace("btn-primary","btn-success");
+    setTimeout(showText, 500);
+    btn.innerHTML = "<i class='fas fa-spinner fa-spin'></i>"  + " Calculating...";
+    }
+function showText () {
+    var fieldInput = parseInt(document.getElementById("text").value); 
+    var fieldInput2 = parseInt(document.getElementById("text2").value); 
+    var operatorChosen = document.getElementById("mySelect").value;
+    
+    if(fieldInput != '' && fieldInput2 != '' && fieldInput2 != '0') {
+        document.getElementById("field").innerHTML= calculate(fieldInput, fieldInput2, operatorChosen);
+    }
+    else if (fieldInput == '' && fieldInput2 == '' ){
+        document.getElementById("error1").innerHTML = "You didn't fill out any field. Please fill out both fields";
+    }
+    else if (fieldInput == ''){
+        document.getElementById("error1").innerHTML = "Please enter a value in the left field";
+    } else if (fieldInput2 == ''){
+        document.getElementById("error1").innerHTML = "Please enter a value in the right field";
+    }
+  
+    btn.innerHTML = "Calculate!";
+    btn.classList.replace("btn-success","btn-primary");
+}
+function calculate(a,b,c) {
+    switch(c){
+        case "-": 
+            return a - b;
+        case "+": 
+            return a + b;
+        case "/": 
+            if(b==0){
+                return "Cannot divide by 0";
+            }
+            return a / b;
+        case "*": 
+            return a * b;
+    }
+}
+
+</script>
+</body>
+</html>
