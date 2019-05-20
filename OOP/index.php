@@ -2,11 +2,11 @@
 
 class Person
 {
-    Person 1 $
+    public $firstname;
 }
 
 
-$someOne = newPerson ();
-$someOne->firstname='Fred'
-echo $someOne->firstname
+$someOne = new Person ();
+$someOne->firstname='Fred';
+echo $someOne->firstname;
 var_dump($someOne);
